@@ -1,4 +1,4 @@
 todoli
 ======
 
-A very simple, quickly sharable ToDo list service in Python
+A very simple, quickly sharable ToDo list service written in Python using the Django framework.
