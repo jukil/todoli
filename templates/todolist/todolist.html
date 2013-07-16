@@ -1,0 +1,7 @@
+<h2>{{ todolist.name }}</h2>
+<a href="{% url 'todolist' todolist.id %}">Share this list</a>
+<ul>
+    {% for entry in todolist.entry_set.all %}
+        <li>{{ entry.content }}</li>
+    {% endfor %}
+</ul>
