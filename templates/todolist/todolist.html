@@ -1,7 +1,19 @@
+<h1>Todoli Logo</h1>
 <h2>{{ todolist.name }}</h2>
 Share this list: <input type="text" size="63" onClick="this.select();" value="{{ request.build_absolute_uri }}" readonly />
 <ul>
     {% for entry in todolist.entry_set.all %}
-        <li>{{ entry.content }}</li>
+        <li>{{ entry.content }} <input type="submit" onclick="return confirm('This entry will be marked as completed.')" value="done!"></li>
     {% endfor %}
 </ul>
+
+<h2>Recently done</h2>
+<ul>
+    {% for entry in todolist.entry_set(status=false) %}
+        <li>{{ entry.content }} <input type="submit" onclick="return confirm('This entry will be marked as incomplete.')" value="undone!"></li>
+    {% endfor %}
+</ul>
+
+<footer>
+    Version: <a href="https://github.com/orschiro/todoli/commit/f1a969d3448cbd72418ad9ff7a9bc7521c729e0c" target="blank">f1a969d344</a>
+</footer>

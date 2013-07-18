@@ -116,7 +116,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "P:/Software/Portable Python 2.7.5.1/App/Scripts/todoli/templates"
+    "P:/Software/Portable Python 2.7.5.1/App/Scripts/todoli/templates",
+    "/home/orschiro/Projects/todoli/todoli/templates",
 )
 
 INSTALLED_APPS = (
