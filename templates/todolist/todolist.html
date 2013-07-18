@@ -1,25 +1,67 @@
-<h1>Todoli Logo</h1>
-<h2>{{ todolist.name }}</h2>
-Share this list: <input type="text" size="63" onClick="this.select();" value="{{ request.build_absolute_uri }}" readonly />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>todoli: {{todolist.name }}</title>
+    {% load staticfiles %}
+     <link href="{% static "style.css" %}" rel="stylesheet" type="text/css" media="screen" />
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+</head>
+<body>
+<h1>todoli: collaborative to-do list sharing</h1>
+<h3>Your list: {{ todolist.name }}</h3>
+Share: <input type="text" size="63" onClick="this.select();" value="{{ request.build_absolute_uri }}" readonly />
+<div> 
+<h2>Add a new to do item:</h2>
+<form action="{% url 'todolists:todo_add' todolist.slug %}" method="post">
+{% csrf_token %}
+    <textarea rows="3" cols="70" name="content" autofocus="autofocus" required="required"></textarea>
+    <input type="submit" class="button" value="Add" />
+</form>
+</div>
+<br class="clear" />
+<div>
+<h2>Still to do:</h2>
 <ul>
     {% for entry in todolist.entry_set.all %}
         {# Filter for incomplete entries #}
         {% if not entry.status %}
-            <li>{{ entry.content }} <input type="submit" onclick="return confirm('This entry will be marked as completed.')" value="done!"></li>
+            <li>
+                {{ entry.content|linebreaks }}
+                <form action="{% url 'todolists:todo_done' todolist.slug %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_pk" value="{{ entry.pk }}" />
+                    <input type="submit" class="button" onclick="return confirm('This ToDo will be marked as completed.')" value="done!">
+                </form>
+            </li>
         {% endif %}
     {% endfor %}
 </ul>
-
-<h2>Recently done</h2>
+</div>
+<br style="clear: both;" />
+<h2>already done:</h2>
 <ul>
     {% for entry in todolist.entry_set.all %}
         {# Filter for completed entries #}
         {% if entry.status %}
-            <li>{{ entry.content }} <input type="submit" onclick="return confirm('This entry will be marked as incomplete.')" value="undone!"></li>
+            <li style="background-color: #ADFF2F; width: 500px; min-height: 50px; list-style:none; padding: 10px; margin: 10px;">
+                {{ entry.content|linebreaks }} 
+                <form style="text-align: right;" action="{% url 'todolists:todo_undo' todolist.slug %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="todo_pk" value="{{ entry.pk }}" />
+                    <input type="submit" class="button" onclick="return confirm('This ToDo will be marked as not completed.')" value="undo!">
+                </form>
+            </li>
          {% endif %}
     {% endfor %}
 </ul>
-
 <footer>
-    Version: <a href="https://github.com/orschiro/todoli/commit/f1a969d3448cbd72418ad9ff7a9bc7521c729e0c" target="blank">f1a969d344</a>
+    <ul>
+        <li>
+            Version: <a href="https://github.com/orschiro/todoli/commit/f1a969d3448cbd72418ad9ff7a9bc7521c729e0c" target="blank">f1a969d344</a>
+        </li>
+        <li>About</li>
 </footer>
+</div>
+</body>
+</html>
+<body>

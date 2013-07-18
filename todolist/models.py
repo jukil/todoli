@@ -8,11 +8,17 @@ class TodoList(models.Model):
     def __unicode__(self):
         return self.name
 
+    # def get_absolute_url(self):
+    #     return reverse('todolist', kwargs={'slug': self.slug})
+
 class Entry(models.Model):
     todolist = models.ForeignKey(TodoList)
     content = models.TextField()
     # Todo: Differentiate between done and not completed
     status = models.BooleanField()
+
+    class Meta:
+        ordering = ["-pk"]
 
     def __unicode__(self):
         return self.content

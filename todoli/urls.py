@@ -7,7 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'todoli.views.home', name='home'),
-    url(r'^todolist/', include('todolist.urls')),
+    url(r'^todolist/', include('todolist.urls', namespace="todolists")),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

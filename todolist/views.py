@@ -1,6 +1,33 @@
 from django.views.generic import DetailView
-from todolist.models import TodoList
+from todolist.models import TodoList, Entry
 
-class TodoList(DetailView):
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.core.urlresolvers import reverse
+
+class TodoListShow(DetailView):
     model = TodoList
     template_name = 'todolist/todolist.html'
+
+def todo_add(request, slug):
+    p = get_object_or_404(TodoList, slug=slug)
+    new_todo = Entry(todolist=p, content=request.POST['content'], status=False)
+    new_todo.save()
+    
+    return HttpResponseRedirect(reverse('todolists:todolist', args=(p.slug,)))
+
+def todo_done(request, slug):
+    todolist = get_object_or_404(TodoList, slug=slug)
+    p = get_object_or_404(Entry, pk=int(request.POST['todo_pk']))
+    p.status = True
+    p.save()
+    
+    return HttpResponseRedirect(reverse('todolists:todolist', args=(todolist.slug,)))
+
+def todo_undo(request, slug):
+    todolist = get_object_or_404(TodoList, slug=slug)
+    p = get_object_or_404(Entry, pk=int(request.POST['todo_pk']))
+    p.status = False
+    p.save()
+    
+    return HttpResponseRedirect(reverse('todolists:todolist', args=(todolist.slug,)))
