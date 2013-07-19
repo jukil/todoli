@@ -1,9 +1,7 @@
-todoli
+Todoli
 ======
 
-.. image:: http://todoli.orzanna.de/static/logo.png
-  :alt: Todoli logo
-  :align: right
+![Todoli logo](https://github.com/orschiro/todoli/blob/master/static/Favicon190x190.png?raw=true)
 
 Todoli is a very simple, quickly sharable to-do list application written in Python using the Django framework. 
 It is largely inspired by [todo.nona.net](http://todo.nona.net/). Yet it comes with some incremental improvements
