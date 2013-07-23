@@ -1,20 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>todoli: {{todolist.name }}</title>
-    {% load staticfiles %}
-    <link rel="shortcut icon" href="{% static "favicon.ico" %}">
-     <link href="{% static "style.css" %}" rel="stylesheet" type="text/css" media="screen" />
-     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-     <!--[if lt IE 9]>
-        <script src="https://raw.github.com/aFarkas/html5shiv/master/dist/html5shiv.js"></script>
-    <![endif]-->
-</head>
-<body>
-<div id="wrapper">
-<div id="logo">
-    <img src="{% static "logo.png" %}" alt="Todoli: Collaborative to-do lists" />
-</div>
+{% extends "todolist/base.html" %}
+
+{% block title %}{{todolist.name }}{% endblock %}
+
+{% block content %}
+
 <h3>Your list: {{ todolist.name }}</h3>
 Share: <input class="input-url" type="text" onClick="this.select();" value="{{ request.build_absolute_uri }}" readonly />
 <div> 
@@ -59,15 +48,5 @@ Share: <input class="input-url" type="text" onClick="this.select();" value="{{ r
          {% endif %}
     {% endfor %}
 </div>
-<br class="clear" />
-<footer>
-    <ul id="footer-navigation">
-        <li>
-            Version: <a href="https://github.com/orschiro/todoli/commit/f1a969d3448cbd72418ad9ff7a9bc7521c729e0c" target="blank">f1a969d344</a>
-        </li>
-        <li><a href="https://github.com/orschiro/todoli/blob/master/README.md" target="blank">About</a></li>
-</footer>
-</div>
-</body>
-</html>
-<body>
+
+{% endblock %}
