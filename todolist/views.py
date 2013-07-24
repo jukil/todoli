@@ -46,4 +46,4 @@ def todolist_add(request):
     p = TodoList(name=request.POST['todolist_name'], slug=slugify(request.POST['todolist_name']))
     p.save()
     todolist = get_object_or_404(TodoList, name=request.POST['todolist_name'])
-    return HttpResponseRedirect('/todolist/%s' % todolist.slug)
+    return HttpResponseRedirect('/%s' % todolist.slug)
