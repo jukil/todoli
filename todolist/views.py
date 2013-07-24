@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, TemplateView, RedirectView
+from django.views.generic import DetailView, TemplateView
 from todolist.models import TodoList, Entry
 
 from django.shortcuts import get_object_or_404, render
