@@ -25,7 +25,7 @@ Feedback
 
 I will constantly try to improve Todoli. But I am also eager to know how I can improve my code. 
 So please provide me feedback. Write me a mail (orschiro at gmail dot com), [submit a ticket](https://github.com/orschiro/todoli/issues)
-or [add a to-do](http://todoli.orzanna.de/todoli/todoli-list) to Todoli's own list. Yeah, I know it is cool to use
+or [add a to-do](http://todoli.orzanna.de/todolists/todoli-list/) to Todoli's own list. Yeah, I know it is cool to use
 its own service for that. ;)
 
 Changelog
