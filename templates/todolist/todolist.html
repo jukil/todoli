@@ -11,7 +11,7 @@ Share: <input class="input-url" type="text" onClick="this.select();" value="{{ r
 <form action="{% url 'todolists:todo_add' todolist.slug %}" method="post">
 {% csrf_token %}
     <textarea class="input-text" rows="3" cols="70" name="content" autofocus="autofocus" required="required"></textarea>
-    <input type="submit" class="button" value="Add" />
+    <input type="submit" class="button-red float-right" value="Add" />
 </form>
 </div>
 <br class="clear" />
@@ -21,11 +21,11 @@ Share: <input class="input-url" type="text" onClick="this.select();" value="{{ r
         {# Filter for incomplete entries #}
         {% if not entry.status %}
             <div class="clear entry">
-                {{ entry.content|linebreaks }}
+                <p class="red">{{ entry.content|linebreaksbr }}</p>
                 <form action="{% url 'todolists:todo_done' todolist.slug %}" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="todo_pk" value="{{ entry.pk }}" />
-                    <input type="submit" class="button float-right" onclick="return confirm('This entry will be marked as completed.')" value="Done">
+                    <input type="submit" class="button-red float-right" onclick="return confirm('This entry will be marked as completed.')" value="Done">
                 </form>
             </div>
         {% endif %}
