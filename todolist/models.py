@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 class TodoList(models.Model):
     id = models.AutoField(primary_key=True)
@@ -8,8 +9,8 @@ class TodoList(models.Model):
     def __unicode__(self):
         return self.name
 
-    # def get_absolute_url(self):
-    #     return reverse('todolist', kwargs={'slug': self.slug})
+    #def get_absolute_url(self):
+    #    return reverse('todolists:todolist', args=[self.slug])
 
 class Entry(models.Model):
     todolist = models.ForeignKey(TodoList)
