@@ -3,8 +3,8 @@ from django.core.urlresolvers import reverse
 
 class TodoList(models.Model):
     id = models.AutoField(primary_key=True)
-    slug = models.SlugField(max_length=50)
-    name = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, max_length=255)
+    name = models.CharField(max_length=255)
 
     def __unicode__(self):
         return self.name

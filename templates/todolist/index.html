@@ -1,4 +1,4 @@
-{% extends "todolist/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Collaborative to-do lists without registration{% endblock %}
 
@@ -7,10 +7,10 @@
 <h2>Create a new list</h2>
 <form action="{% url 'todolists:todolist_add' %}" method="post">
 {% csrf_token %}
-    <input type="submit" class="add-new"  value="Add new" />
-    Name: <input class="input-url" type="text" name="todolist_name" required="required" autofocus="autofocus" />
+     Name: <input class="input-url" type="text" name="todolist_name" required="required" autofocus="autofocus" />
+    <input type="submit" class="button-red"  value="Add new" />
 </form>
-
+<span id="error"></span>
 <div> 
 
 {% endblock %}
