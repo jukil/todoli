@@ -32,9 +32,9 @@
         // IE fix for text field required input. Before submitting, check if input field is empty.
         $("form").submit(function() {
            if($(".input-url").val() === "" || $(".input-text").val() === "") {
-                    $("#error").text("You cannot leave this field empty").show().fadeOut(10000);
+                    $("#error").text("You cannot leave this field empty").show().fadeOut(5000);
+                    return false;
             }
-            return false;
         });
     </script>
 </body>
