@@ -8,7 +8,7 @@
 Share: <input class="input-url" type="text" onClick="this.select();" value="{{ request.build_absolute_uri }}" readonly />
 <div> 
 <h2>Add a new to do item:</h2>
-<form action="{% url 'todolists:todo_add' todolist.slug %}" method="post">
+<form class="validate-form" action="{% url 'todolists:todo_add' todolist.slug %}" method="post">
 {% csrf_token %}
     <textarea class="input-text" rows="3" cols="70" name="content" autofocus="autofocus" required="required"></textarea>
     <input type="submit" class="button-red float-right" value="Add" />

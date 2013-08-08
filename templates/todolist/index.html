@@ -5,7 +5,7 @@
 {% block content %}
 
 <h2>Create a new list</h2>
-<form action="{% url 'todolists:todolist_add' %}" method="post">
+<form class="validate-form" action="{% url 'todolists:todolist_add' %}" method="post">
 {% csrf_token %}
      Name: <input class="input-url" type="text" name="todolist_name" required="required" autofocus="autofocus" />
     <input type="submit" class="button-red"  value="Add new" />
