@@ -43,7 +43,16 @@ def todo_undo(request, slug):
     return HttpResponseRedirect(reverse('todolists:todolist', args=(todolist.slug,)))
 
 def todolist_add(request):
-    p = TodoList(name=request.POST['todolist_name'], slug=slugify(request.POST['todolist_name']))
+    todolist = TodoList.objects.get(slug=slugify(request.POST['todolist_name']))
+    if todolist:
+        name=request.POST['todolist_name'] + str(todolist.pk + 1)
+        slug=slugify(request.POST['todolist_name'] + str(todolist.pk + 1))
+    else:
+        name=request.POST['todolist_name']
+        slug=slugify(request.POST['todolist_name'])
+    
+    p = TodoList(name=name, slug=slug)
     p.save()
-    todolist = get_object_or_404(TodoList, name=request.POST['todolist_name'])
+
+    todolist = get_object_or_404(TodoList, name=name)
     return HttpResponseRedirect('/todolists/%s' % todolist.slug)
